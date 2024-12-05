@@ -1,48 +1,53 @@
-@keyframes slide {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-.logos {
+.infinite-scroll-container {
   overflow: hidden;
-  padding: 30px 0;
-  white-space: nowrap;
   position: relative;
+  width: 100%;
+  padding: 30px 0;
 }
 
-.logos-slide {
-  display: flex; /* Use flex to align logos in a row */
-  animation: 35s slide infinite linear;
+.infinite-scroll-content {
+  display: inline-flex;
+  animation: infinite-scroll 70s linear infinite;
+  white-space: nowrap;
 }
 
-.logos-slide img {
-  height: 50px;
+.infinite-scroll-content:hover {
+  animation-play-state: paused;
 }
 
-.logos:before,
-.logos:after {
+.program-name {
+  font-size: 28px;
+  color: #1c8ea8; /* A primary blue color */
+  padding: 0 24px;
+}
+
+.separator {
+  font-size: 28px;
+  color: #FBC983;
+}
+
+@keyframes infinite-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Fade effect for start and end */
+.infinite-scroll-container::before,
+.infinite-scroll-container::after {
+  content: "";
   position: absolute;
   top: 0;
   width: 250px;
   height: 100%;
-  content: "";
   z-index: 2;
 }
 
-.logos:before {
+.infinite-scroll-container::before {
   left: 0;
   background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
 }
 
-.logos:after {
+.infinite-scroll-container::after {
   right: 0;
   background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
-}
-
-.logos:hover .logos-slide {
-  animation-play-state: paused;
-}
+};

@@ -1,67 +1,51 @@
 "use client";
+
 import {
   Box,
   Button,
   Card,
   CardActionArea,
-  // CardContent,
-  // CardMedia,
+  CardMedia,
+  CardContent,
   Typography,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import React, { useState } from "react";
-import { Colors } from "@/lib/Color";
-import "./CardContainer.css";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
 import { ArrowRight } from "lucide-react";
+import { useState } from "react";
+import "./CardContainer.css";
 
-function CardContainer() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [cards, setCards] = useState([
-    {
-      img: "https://ccicons.s3.amazonaws.com/mba_hires/landing_page/card1.png",
-      title: "Gig Interns",
-      href: "/Gig-intern",
-      subtitle: "Remote Projects - Give work on project basis.",
-    },
-    {
-      img: "https://ccicons.s3.amazonaws.com/mba_hires/landing_page/card2.png",
-      title: "Full Time Interns",
-      // href: "/remote-intern",
-      subtitle: "Periodic Internships - Ideally 2,3 or 5-month long.",
-    },
-    {
-      img: "https://ccicons.s3.amazonaws.com/mba_hires/landing_page/card3.png",
-      title: "Permanent Employee",
-      // href: "/full-time-employee",
-      subtitle: "Long-Term - The usual full time roles.",
-    },
-  ]);
+const cards = [
+  {
+    img: "https://ccicons.s3.amazonaws.com/mba_hires/landing_page/card1.png",
+    title: "Gig Interns",
+    subtitle: "Remote Projects - Give work on project basis.",
+  },
+  {
+    img: "https://ccicons.s3.amazonaws.com/mba_hires/landing_page/card2.png",
+    title: "Full Time Interns",
+    subtitle: "Periodic Internships - Ideally 2,3 or 5-month long.",
+  },
+  {
+    img: "https://ccicons.s3.amazonaws.com/mba_hires/landing_page/card3.png",
+    title: "Permanent Employee",
+    subtitle: "Long-Term - The usual full time roles.",
+  },
+];
 
+export default function CardContainer() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Box px={10}>
-      <Box
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        flexDirection={"column"}
-        mt={{ xs: 8, md: 0 }}
-      >
-        <Box
-          display={"flex"}
-          justifyItems={"center"}
-          alignItems={"center"}
-          gap={1}
-        >
-          <Typography variant="h5" mt={2} mb={1} sx={{ height: "40px" }}>
-            Looking for{" "}
+    <Box className="w-full px-4 md:px-10 py-8 md:py-16">
+      <Box className="flex flex-col items-center text-center mb-8 md:mb-12">
+        <Box className="flex items-center justify-center gap-2 mb-2">
+          <Typography className="text-[23px] md:text-[32px]">
+            Looking for
           </Typography>
-          <div className="inner-headings">
+          <div className="inner-headings text-[23px] md:text-[32px]">
             <span>
               Gig Interns? <br />
               Full Time Interns? <br />
@@ -69,128 +53,74 @@ function CardContainer() {
             </span>
           </div>
         </Box>
-        <Typography variant="body1" color={"text.secondary"}>
+        <Typography variant="body1" color="text.secondary">
           We've got you covered with unmatched success!
         </Typography>
       </Box>
-      <Box
-        display={"flex"}
-        justifyContent={"space-between"}
-        m={2}
-        gap={5}
-        flexDirection={{ xs: "column", md: "row" }}
-      >
-        {cards.map((card, index) => {
-          return (
-            <Card
-              key={index}
-              sx={{
-                flex: 1,
-                borderRadius: "16px",
-                transition: isMobile
-                  ? "none"
-                  : "transform 0.3s ease, box-shadow 0.3s ease",
-                transform: isMobile
-                  ? "none"
-                  : hoveredIndex === index
-                  ? "translateY(-40px)"
-                  : "translateY(0)",
-                boxShadow: isMobile
-                  ? "none"
-                  : hoveredIndex === index
-                  ? "0px 4px 20px rgba(0,0,0,0.2)"
+
+      <Box className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        {cards.map((card, index) => (
+          <Card
+            key={index}
+            sx={{
+              borderRadius: "16px",
+              height: "100%",
+              transition: "all 0.3s ease",
+              transform:
+                !isMobile && hoveredIndex === index
+                  ? "translateY(-20px)"
                   : "none",
-                height: { xs: "auto", md: "500px" },
-                width: { xs: "100%", md: "auto" },
-                marginBottom: { xs: 2, md: 0 },
-                backgroundColor: { xs: "#ffe6e6", md: "white" },
-                padding: { xs: 1, md: 0 },
+              boxShadow:
+                !isMobile && hoveredIndex === index
+                  ? "0 20px 25px -5px rgb(0 0 0 / 0.1)"
+                  : "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+              backgroundColor: isMobile ? "#ffe6e6" : "white",
+            }}
+            onMouseEnter={() => !isMobile && setHoveredIndex(index)}
+            onMouseLeave={() => !isMobile && setHoveredIndex(null)}
+          >
+            <Box
+              sx={{
+                height: "100%",
                 display: "flex",
                 flexDirection: "column",
+                alignItems: "stretch",
+                cursor: "pointer",
               }}
-              onMouseEnter={() => !isMobile && setHoveredIndex(index)}
-              onMouseLeave={() => !isMobile && setHoveredIndex(null)}
             >
-              <CardActionArea
-                onClick={() => (window.location.href = card.href ?? "")}
+              <CardMedia
+                component="img"
+                image={card.img}
+                alt={card.title}
                 sx={{
-                  "&:hover": {
-                    backgroundColor: isMobile
-                      ? "transparent"
-                      : Colors.primaryLight.concat("50"),
-                    "& .know-more": {
-                      display: isMobile ? "none" : "flex",
-                      color: Colors.primary,
-                    },
-                  },
-                  display: "flex",
-                  flexDirection: "column",
-                  height: "100%",
-                  gap: 2,
+                  height: { xs: 200, sm: 250, md: 300 },
+                  objectFit: "cover",
                 }}
-              >
-                <CardMedia
-                  component="img"
-                  image={card.img}
-                  alt={card.title}
-                  sx={{
-                    borderRadius: "15px",
-                    height: { xs: "auto", md: "360px" }, // Apply responsive height here
-                  }}
-                />
-
-                <CardContent
-                  sx={{
-                    height: { xs: "auto", md: "100px" },
-                    padding: { xs: 0 },
-                    textAlign: { xs: "left" }, // Move textAlign here
-                  }}
-                >
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="div"
-                    sx={{
-                      // color: Colors.primary,
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
+              />
+              <CardContent sx={{ flexGrow: 1, p: 3 }}>
+                <Box className="flex justify-between items-center mb-2">
+                  <Typography variant="h6" component="h3">
                     {card.title}
-                    {isMobile && <ArrowRight />}
                   </Typography>
-                  <Typography variant="body2" className=" text-gray-400">
-                    {card.subtitle}
-                  </Typography>
-                </CardContent>
-                {!isMobile && (
-                  <Box
-                    className="know-more"
-                    height={"40px"}
-                    display="none"
-                    justifyContent="center"
-                    mb={1}
+                  {isMobile && <ArrowRight />}
+                </Box>
+                <Typography variant="body2" color="text.secondary">
+                  {card.subtitle}
+                </Typography>
+                {!isMobile && hoveredIndex === index && (
+                  <Button
+                    variant="text"
+                    className="mt-4 text-primary1"
+                    endIcon={<ArrowRight />}
                   >
-                    <Button
-                      variant="text"
-                      sx={{
-                        textTransform: "none",
-                        backgroundColor: "transparent",
-                        color: Colors.primary2,
-                      }}
-                    >
-                      <Typography variant="h6">Know More</Typography>
-                      <ArrowRight />
-                    </Button>
-                  </Box>
+                    Know More
+                  </Button>
                 )}
-              </CardActionArea>
-            </Card>
-          );
-        })}
+              </CardContent>
+            </Box>
+          </Card>
+        ))}
       </Box>
     </Box>
   );
 }
-
-export default CardContainer;

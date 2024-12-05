@@ -20,7 +20,7 @@ const jobs = [
     title: "Digital Marketing Manager",
     location: "Bengaluru",
     salary: "₹15L - 16L per annum",
-    type: "Digital Mark",
+    type: "Digital Marketing",
   },
   {
     id: 2,
@@ -40,7 +40,6 @@ const jobs = [
     salary: "₹10L - 13L per annum",
     type: "Business",
   },
-  // Duplicate jobs to create 3x3 grid
   {
     id: 4,
     company: "Wells Fargo",
@@ -48,7 +47,7 @@ const jobs = [
     title: "Digital Marketing Manager",
     location: "Bengaluru",
     salary: "₹15L - 16L per annum",
-    type: "Digital Mark",
+    type: "Digital Marketing",
   },
   {
     id: 5,
@@ -75,7 +74,7 @@ const jobs = [
     title: "Digital Marketing Manager",
     location: "Bengaluru",
     salary: "₹15L - 16L per annum",
-    type: "Digital Mark",
+    type: "Digital Marketing",
   },
   {
     id: 8,
@@ -95,6 +94,60 @@ const jobs = [
     salary: "₹10L - 13L per annum",
     type: "Business",
   },
+  {
+    id: 10,
+    company: "Wells Fargo",
+    logo: "https://ccicons.s3.amazonaws.com/mba_hires/companies/wells_fargo.png",
+    title: "Senior Business Analyst",
+    location: "Hyderabad",
+    salary: "₹10L - 13L per annum",
+    type: "Business",
+  },
+  {
+    id: 11,
+    company: "Wells Fargo",
+    logo: "https://ccicons.s3.amazonaws.com/mba_hires/companies/wells_fargo.png",
+    title: "Senior Business Analyst",
+    location: "Hyderabad",
+    salary: "₹10L - 13L per annum",
+    type: "Business",
+  },
+  {
+    id: 12,
+    company: "Wells Fargo",
+    logo: "https://ccicons.s3.amazonaws.com/mba_hires/companies/wells_fargo.png",
+    title: "Senior Business Analyst",
+    location: "Hyderabad",
+    salary: "₹10L - 13L per annum",
+    type: "Business",
+  },
+  {
+    id: 13,
+    company: "Wells Fargo",
+    logo: "https://ccicons.s3.amazonaws.com/mba_hires/companies/wells_fargo.png",
+    title: "Senior Business Analyst",
+    location: "Hyderabad",
+    salary: "₹10L - 13L per annum",
+    type: "Business",
+  },
+  {
+    id: 14,
+    company: "Wells Fargo",
+    logo: "https://ccicons.s3.amazonaws.com/mba_hires/companies/wells_fargo.png",
+    title: "Senior Business Analyst",
+    location: "Hyderabad",
+    salary: "₹10L - 13L per annum",
+    type: "Business",
+  },
+  {
+    id: 15,
+    company: "Wells Fargo",
+    logo: "https://ccicons.s3.amazonaws.com/mba_hires/companies/wells_fargo.png",
+    title: "Senior Business Analyst",
+    location: "Hyderabad",
+    salary: "₹10L - 13L per annum",
+    type: "Business",
+  },
 ];
 
 export function JobListings() {
@@ -107,8 +160,16 @@ export function JobListings() {
   };
 
   const prevPage = () => {
-    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
+    if (currentPage > 0) {
+      setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
+    }
   };
+
+  // Get jobs for the current page
+  const visibleJobs = jobs.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  );
 
   return (
     <section className="py-20 bg-backgroundJob px-10">
@@ -121,7 +182,7 @@ export function JobListings() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl text-gray-900 mb-2">
-            <span className=" text-primary1">Companies Hiring</span> using CEE
+            <span className="text-primary1">Companies Hiring</span> using CEE
           </h2>
           <p className="text-lg text-gray-400">
             Recruiters believe in data-driven hiring from CEE scores
@@ -129,62 +190,58 @@ export function JobListings() {
         </motion.div>
 
         <div className="relative">
-          <div className="">
-            <div
-              className="transition-transform duration-300 ease-in-out"
-              style={{
-                transform: `translateX(-${currentPage * 100}%)`,
-              }}
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-[95%] mx-auto">
-                {jobs.map((job, index) => (
-                  <motion.div
-                    key={job.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="bg-white border border-gray-100 rounded-lg p-6 shadow-lg hover:shadow-lg transition-shadow"
-                  >
-                    <div className="flex items-center space-x-4 mb-4">
-                      <div className="relative w-14 h-12 flex-shrink-0 shadow-lg rounded-md">
-                        <Image
-                          src={job.logo}
-                          alt={`${job.company} logo`}
-                          fill
-                          className="object-contain "
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold mb-1 text-gray-600">
-                          {job.company}
-                        </p>
-                        <p className="text-xs text-gray-500">Posting Soon</p>
-                      </div>
-                      {job.type === "Finance" ? (
-                        <span className="inline-block px-2 py-1 text-xs font-medium text-backgroundColor bg-orange rounded-full">
-                          {job.type}
-                        </span>
-                      ) : (
-                        <span className="inline-block px-2 py-1 text-xs font-medium text-primary bg-primary/10 rounded-full">
-                          {job.type}
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="text-lg  text-gray-900 mb-12 min-h-[60px]">
-                      {job.title} - {job.location}
-                    </h3>
-                    <div className="flex items-center text-gray-600 text-sm gap-2">
-                      <Banknote color={Colors.primary2} />
-                      <span>{job.salary}</span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-[95%] mx-auto">
+            {visibleJobs.map((job, index) => (
+              <motion.div
+                key={job.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white border border-gray-100 rounded-lg p-6 shadow-lg hover:shadow-lg transition-shadow"
+              >
+                <div className="flex items-center space-x-4 mb-4">
+                  <div className="relative w-14 h-12 flex-shrink-0 shadow-lg rounded-md">
+                    <Image
+                      src={job.logo}
+                      alt={`${job.company} logo`}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold mb-1 text-gray-600">
+                      {job.company}
+                    </p>
+                    <p className="text-xs text-gray-500">Posting Soon</p>
+                  </div>
+                  {job.type === "Finance" ? (
+                    <span className="inline-block px-2 py-1 text-xs font-medium text-backgroundColor bg-orange rounded-full">
+                      {job.type}
+                    </span>
+                  ) : (
+                    <span className="inline-block px-2 py-1 text-xs font-medium text-primary bg-primary/10 rounded-full">
+                      {job.type}
+                    </span>
+                  )}
+                </div>
+                <h3 className="text-lg text-gray-900 min-h-[60px]">
+                  {job.title}
+                </h3>
+                <div className="flex items-center text-gray-600 text-sm gap-2 mb-4">
+                  <MapPin color={"#6b7280"} size={20} />
+                  <span>{job.location}</span>
+                </div>
+                <div className="flex items-center text-gray-600 text-sm gap-2">
+                  <Banknote color={"#6b7280"} size={20} />
+                  <span>{job.salary}</span>
+                </div>
+              </motion.div>
+            ))}
           </div>
 
-          {/* <button
+          {/* Pagination Buttons */}
+          <button
             onClick={prevPage}
             className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white rounded-full p-2 shadow-lg z-10"
           >
@@ -195,7 +252,7 @@ export function JobListings() {
             className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white rounded-full p-2 shadow-lg z-10"
           >
             <ChevronRight className="w-6 h-6 text-gray-600" />
-          </button> */}
+          </button>
         </div>
 
         <div className="text-center mt-8 text-backgroundColor">

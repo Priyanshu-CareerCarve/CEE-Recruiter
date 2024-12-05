@@ -4,9 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select } from "@/components/ui/select";
 import { useState } from "react";
-import { Colors } from "@/lib/Color";
 
 export function CTAForm() {
   const [formData, setFormData] = useState({
@@ -15,14 +13,13 @@ export function CTAForm() {
     mobile: "",
     email: "",
     website: "",
-    lookingFor: "",
+    RecruitmentType: "",
     role: "",
     queries: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     console.log(formData);
   };
 
@@ -36,36 +33,36 @@ export function CTAForm() {
   };
 
   return (
-    <section className={`py-20  bg-primary1 text-white`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex gap-8">
+    <section className="py-12 md:py-20 bg-primary1 text-white">
+      <div className="container px-4 md:px-8">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-12">
           {/* Left side content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-1/4 flex flex-col justify-start"
+            className="w-full md:w-1/4 text-center md:text-right"
           >
-            <h2 className="text-[32px] text-right font-light text-[#FBC983]">
+            <h2 className="text-2xl md:text-[32px] font-light md:mb-8 text-[#FBC983]">
               Join the
             </h2>
-            <h2 className="text-[64px] text-right font-medium text-[#FBC983]">
+            <h2 className="text-4xl md:text-[64px] font-medium md:mb-8 text-[#FBC983]">
               CEE
             </h2>
-            <h2 className="text-[32px] text-right font-light mb-3 text-[#FBC983]">
+            <h2 className="text-2xl md:text-[32px] font-light md:mb-12 text-[#FBC983]">
               Revolution
             </h2>
-            <p className="text-[18px] text-right text-white opacity-90 font-thin">
+            <p className="text-base md:text-[18px] text-white opacity-90 font-thin">
               Submit the form and we&apos;ll
             </p>
-            <p className="text-[18px] text-right text-white opacity-90 font-thin">
+            <p className="text-base md:text-[18px] text-white opacity-90 font-thin">
               revert back shortly.
             </p>
           </motion.div>
 
-          {/* Divider */}
-          <div className="w-px bg-white"></div>
+          {/* Divider - Hidden on mobile */}
+          <div className="hidden md:block w-px bg-white"></div>
 
           {/* Form section */}
           <motion.div
@@ -77,7 +74,7 @@ export function CTAForm() {
           >
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               {/* First Row */}
-              <div className="grid grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
                 <Input
                   type="text"
                   name="name"
@@ -108,7 +105,7 @@ export function CTAForm() {
               </div>
 
               {/* Second Row */}
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                 <Input
                   type="email"
                   name="email"
@@ -130,12 +127,12 @@ export function CTAForm() {
               </div>
 
               {/* Third Row */}
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                 <select
                   name="role"
                   value={formData.role}
                   onChange={handleChange}
-                  className="w-full bg-white border-white border text-gray-800/60 rounded-md px-2 h-10"
+                  className="w-full bg-white border-white border text-gray-800/60 rounded-md px-3 h-10"
                   required
                 >
                   <option value="" disabled>
@@ -147,17 +144,17 @@ export function CTAForm() {
                 </select>
                 <select
                   name="lookingFor"
-                  value={formData.lookingFor}
+                  value={formData.RecruitmentType}
                   onChange={handleChange}
-                  className="w-full bg-white border-white border text-gray-800/60 rounded-md px-2 h-10"
+                  className="w-full bg-white border-white border text-gray-800/60 rounded-md px-3 h-10"
                   required
                 >
                   <option value="" disabled>
-                    Looking for...
+                    Recruitment Type
                   </option>
-                  <option value="interns">Interns</option>
-                  <option value="employees">Full-time Employees</option>
-                  <option value="both">Both</option>
+                  <option value="interns">Gig Interns</option>
+                  <option value="employees">Full Time Interns</option>
+                  <option value="both">Permanent Roles</option>
                 </select>
               </div>
 
@@ -174,11 +171,11 @@ export function CTAForm() {
               </div>
 
               {/* Submit Button */}
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center mt-4">
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-fit px-8 py-4 bg-backgroundColor text-white text-[20px] hover:bg-backgroundColor"
+                  className="w-full md:w-fit px-8 py-4 bg-backgroundColor text-white text-lg md:text-[20px] hover:bg-backgroundColor/90"
                 >
                   Submit
                 </Button>

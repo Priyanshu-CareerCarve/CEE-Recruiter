@@ -15,8 +15,8 @@ export function Header() {
         <Box className="flex justify-between items-center h-16">
           <Box sx={{ "&:hover": { cursor: "pointer" } }}>
             <img
-              src="https://www.careercarve.com/Career_Carve_Logo__1_-removebg-preview%202.png"
-              className="w-[65%] h-[65%]"
+              src="/Career_Carve_Logo__1_-removebg-preview 2.png"
+              className="w-[50%] md:w-[65%] h-auto"
               alt="careercarve"
             />
           </Box>

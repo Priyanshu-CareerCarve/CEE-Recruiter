@@ -52,7 +52,7 @@ export function Process() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+        <div className="grid md:grid-cols-3 gap-8 mb-8 ">
           {steps.map((step, index) => (
             <motion.div
               key={index}
@@ -60,18 +60,20 @@ export function Process() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="relative p-6 rounded-lg text-center border border-gray-200"
+              className="relative p-2 md:p-6 rounded-lg text-center border border-gray-200"
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 mb-6 bg-orange rounded-full">
-                <h1 className="text-3xl text-backgroundColor">{step.icon}</h1>
+              <div className="hover:scale-110 transition-all">
+                <div className="inline-flex items-center justify-center w-16 h-16 mb-6 bg-orange rounded-full">
+                  <h1 className="text-3xl text-backgroundColor">{step.icon}</h1>
+                </div>
+                <div className=" flex justify-center items-center gap-2">
+                  <h3 className="text-xl mb-3 font-medium"> {step.iconsss}</h3>
+                  <h3 className="text-xl mb-3 font-medium">{step.title}</h3>
+                </div>
+                <p className=" text-gray-400 font-light text-[17px]">
+                  {step.description}
+                </p>
               </div>
-              <div className=" flex justify-center items-center gap-2">
-                <h3 className="text-xl mb-3 font-medium"> {step.iconsss}</h3>
-                <h3 className="text-xl mb-3 font-medium">{step.title}</h3>
-              </div>
-              <p className=" text-gray-400 font-light text-[17px]">
-                {step.description}
-              </p>
               {/* {index < steps.length - 1 && (
                 <div className="hidden md:block absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2">
                   <div className="w-8 h-0.5 bg-gray-300"></div>
@@ -88,7 +90,7 @@ export function Process() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-center"
         >
-          <Button className="gap-2 bg-primary1 text-white w-72 hover:bg-primary1">
+          <Button className="gap-2 bg-primary1 text-white w-72 hover:bg-primary1 text-[16px]">
             Get Started <MoveRight size={15} color="white" />
           </Button>
         </motion.div>

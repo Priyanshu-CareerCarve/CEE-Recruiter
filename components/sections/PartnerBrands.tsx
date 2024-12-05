@@ -73,7 +73,7 @@ function PartnerBrands() {
     },
   ]);
   return (
-    <Box p={1} px={10}>
+    <Box p={1} px={{ xs: 1, md: 10 }}>
       <Box
         display={"flex"}
         justifyContent={"center"}
@@ -114,12 +114,13 @@ function PartnerBrands() {
                 display: "flex",
                 justifyContent: "start",
                 alignItems: "center",
-                width: { xs: "103px", md: "180px" },
+                width: { xs: "220px", md: "180px" },
                 height: { xs: "52px", md: "50px" },
                 boxShadow: `0px 2px 16px 0px rgb(0,0,0,0.1)`,
                 borderRadius: "8px",
                 gap: 1,
               }}
+              className=" hover:scale-110 transition-all"
             >
               <Box
                 component={"img"}
@@ -136,7 +137,7 @@ function PartnerBrands() {
             </Card>
           ))}
         </Box>
-        <Button className="gap-2 bg-primary1 text-white w-72 hover:bg-primary1">
+        <Button className="gap-2 bg-primary1 text-white w-64 md:w-72 hover:bg-primary1 text-[16px]">
           Get Started <MoveRight size={15} color="white" />
         </Button>
       </Box>

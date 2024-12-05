@@ -2,8 +2,9 @@
   border: 0px solid #ddd;
   height: 50px;
   line-height: 50px;
-  font-size: 24px;
+  /* font-size: 28px; */
   overflow: hidden;
+  text-align: left;
 }
 
 .inner-headings span {

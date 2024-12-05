@@ -8,7 +8,7 @@ import { MoveRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="pt-24 pb-0 px-10">
+    <section className="pt-24 pb-0 px-1 md:px-10">
       <Box className="section-container">
         <Box className="grid lg:grid-cols-2 items-center relative">
           <motion.div
@@ -19,10 +19,9 @@ export function Hero() {
             <div className=" flex justify-start items-start">
               <Box
                 component="img"
-                // mx={{ md: 1, xs: 0 }}
-                // mt={{ xs: 10, md: 0 }}
+                width={{ xs: "58px", md: "128px" }}
                 sx={{
-                  width: "128px", // You can also use % or responsive values
+                  // width: "128px",
                   height: "auto",
                 }}
                 alt="The house from the offer."
@@ -39,14 +38,14 @@ export function Hero() {
                 src="https://ccicons.s3.amazonaws.com/mba_hires/landing_page/three_strokes.svg"
               />
             </div>
-            <h1 className="text-[32px] my-2 font-extralight text-gray-600">
+            <h1 className="text-[22px] md:text-[32px] my-1 md:my-2 font-extralight text-gray-600">
               Empower Your Hiring Process with{" "}
             </h1>
-            <h1 className=" text-4xl text-backgroundColor">
+            <h1 className=" text-[24px] md:text-[32px] text-backgroundColor">
               CareerCarve Employability
             </h1>
             <p className=" text-gray-600 mb-8 flex justify-start items-center">
-              <span className="text-4xl text-backgroundColor mr-4">
+              <span className="text-[24px] md:text-[32px] text-backgroundColor mr-2 md:mr-4">
                 Examination
               </span>
               <span className=" border-2 border-gray-300 rounded p-0.5">
@@ -63,22 +62,24 @@ export function Hero() {
               </span>
             </p>
             {/* <p className=" border border-black rounded p-4"> #Precise</p> */}
-            <Button className="gap-2 bg-primary1 text-white w-72 hover:bg-primary1">
-              Get Started <MoveRight size={15} color="white" />
-            </Button>
+            <div className="flex justify-start items-center">
+              <Button className="gap-2 bg-primary1 text-white w-fit md:w-72 hover:bg-primary1 text-[16px]">
+                Get Started <MoveRight size={15} color="white" />
+              </Button>
+            </div>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative h-[400px]"
+            className="relative h-[250px] md:h-[400px] pt-2"
           >
             <Image
               src="/hero-image.jpg"
               alt="Professional woman pointing at analytics"
               fill
-              className="object-fill rounded-lg"
+              className="xs:w-full md:object-fill rounded-lg"
               priority
             />
           </motion.div>

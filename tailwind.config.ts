@@ -31,6 +31,7 @@ const config: Config = {
         primaryBlue: "#E5F7FB",
         orange: "#FEEED8",
         backgroundJob: "#F8FCFF",
+        backGroundWhyCee: "#F9FCFF",
 
         neutral: {
           50: '#f8fafc',

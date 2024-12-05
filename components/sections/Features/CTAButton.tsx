@@ -12,7 +12,7 @@ export function CTAButton() {
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: 0.4 }}
     >
-      <Button className="gap-2 bg-primary1 text-white w-80 hover:bg-primary1">
+      <Button className="gap-2 bg-primary1 text-white w-80 hover:bg-primary1 text-[16px]">
         Get Started <MoveRight size={15} color="white" />
       </Button>
     </motion.div>

@@ -91,7 +91,10 @@ export function Features() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-center"
         >
-          <Button size="lg" className="bg-primary1 hover:bg-primary1">
+          <Button
+            size="lg"
+            className="bg-primary1 hover:bg-primary1 text-[16px]"
+          >
             Get Started Today
           </Button>
         </motion.div>
