@@ -1,16 +1,15 @@
 "use client";
 
-import {
-  Box,
-  Button,
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardContent,
-  Typography,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActionArea from "@mui/material/CardActionArea";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import useTheme from "@mui/material/styles/useTheme";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import "./CardContainer.css";
